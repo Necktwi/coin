@@ -20,24 +20,22 @@ import javax.persistence.Id;
  */
 @Entity
 @javax.persistence.Table(name = "USERS")
-@javax.faces.bean.ManagedBean
-@javax.faces.bean.ApplicationScoped
 public class User implements Serializable {
 
-    @Id
     @GeneratedValue
     @Column(name = "ID")
     private Long id;
+    @Id
     @Column(name = "USERNAME")
-    private String name;
+    private String username;
     @Column(name = "PASSWORD")
     private String password;
 
     public User() {
     }
 
-    public User(String name, String password) {
-        this.name = name;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 }

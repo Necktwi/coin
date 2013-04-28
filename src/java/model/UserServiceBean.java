@@ -12,8 +12,6 @@ import javax.persistence.PersistenceContext;
  * @author newmek7
  */
 @javax.ejb.Stateless
-@javax.faces.bean.ManagedBean
-@javax.faces.bean.ApplicationScoped
 public class UserServiceBean implements UserService {
 
     @PersistenceContext
@@ -27,7 +25,7 @@ public class UserServiceBean implements UserService {
     @Override
     public User createOrUpdate(User user) {
         em.merge(user);
-        return ""
+        return user;
     }
 
     @Override

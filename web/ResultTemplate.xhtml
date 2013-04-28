@@ -11,6 +11,25 @@
         </h:head>
 
         <h:body>
+            <div id="authentication">
+                <h:form id="login">
+                    <h:message id="loginResult" for="login"></h:message>
+                    <h:inputText id="username"/>
+                    <h:inputSecret id="password"/>
+                    <h:commandButton action="#{sessionManager.login()}" value="Login">
+                        <f:ajax render="loginResult"/>
+                    </h:commandButton>
+                </h:form>
+                <h:form id="register">
+                    <h:outputText id="registerationResult"></h:outputText>
+                    <h:inputText id="username" value="#{userManager.username}"/>
+                    <h:inputSecret id="password" value="#{userManager.password}"/>
+                    <h:inputSecret id="passcopy"/>
+                    <h:commandButton action="#{userManager.registerUser()}" value="Register">
+                        <f:ajax render="registerationResult"/>
+                    </h:commandButton>
+                </h:form>
+            </div>
             <div id="main">
                 <h:selectOneMenu value="#{game.color}" onchange="this.parentElement.style.color = this.value">
                     <f:selectItems value="#{game.colors}"/><br/>
