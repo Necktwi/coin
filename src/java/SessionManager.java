@@ -34,7 +34,7 @@ public class SessionManager {
     }
 
     public String login() {
-        model.User user = new model.User(this.username, this.password);
+        model.Users user = new model.Users(this.username, this.password);
         this.userServiceBean.find(user);
         return "success";
     }

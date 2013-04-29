@@ -18,24 +18,27 @@ public class UserServiceBean implements UserService {
     private EntityManager em;
 
     /**
-     *
+     *inserts user into database.
      * @param user
      * @return
      */
     @Override
-    public User createOrUpdate(User user) {
-        Object usr = em.merge(user);
-        em.flush();
-        return (User) usr;
+    public String createOrUpdate(Users user) {
+        try {
+            em.persist(user);
+        } catch (javax.persistence.EntityExistsException e) {
+            return "exists";
+        }
+        return "success";
     }
 
     @Override
-    public void remove(User user) {
+    public void remove(Users user) {
         em.remove(em.merge(user));
     }
 
     @Override
-    public User find(Object id) {
-        return em.find(User.class, id);
+    public Users find(Object id) {
+        return em.find(Users.class, id);
     }
 }

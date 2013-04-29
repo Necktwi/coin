@@ -13,18 +13,23 @@ import javax.ejb.Local;
 @Local
 public interface UserService {
 
-    User createOrUpdate(User user);
+    /**
+     *
+     * @param user
+     * @return (String)"success" on insert, "exists" if user aleready exists and "failed" if not added.
+     */
+    String createOrUpdate(Users user);
 
     /**
      *
      * @param user
      */
-    void remove(User user);
+    void remove(Users user);
 
     /**
      *
      * @param id
      * @return
      */
-    User find(Object id);
+    Users find(Object id);
 }

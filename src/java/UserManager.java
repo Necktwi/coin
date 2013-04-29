@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 
-
 import javax.ejb.EJB;
 import model.UserService;
 
@@ -13,24 +12,30 @@ import model.UserService;
  */
 @javax.faces.bean.ManagedBean
 public class UserManager {
+
     @EJB
     private UserService userServiceBean;
     private String username;
     private String password;
-    public void setUsername(String username){
-        this.username=username;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public String getUsername(){
+
+    public String getUsername() {
         return this.username;
     }
-    public void setPassword(String password){
-        this.password=password;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
-    public String registerUser(){
-        model.User user=new model.User(this.username,this.password);
+
+    public String registerUser() {
+        model.Users user = new model.Users(this.username, this.password);
         userServiceBean.createOrUpdate(user);
         return "success";
     }
