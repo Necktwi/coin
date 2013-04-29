@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
 @javax.ejb.Stateless
 public class UserServiceBean implements UserService {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "coinPU")
     private EntityManager em;
 
     /**
@@ -24,8 +24,9 @@ public class UserServiceBean implements UserService {
      */
     @Override
     public User createOrUpdate(User user) {
-        em.merge(user);
-        return user;
+        Object usr = em.merge(user);
+        em.flush();
+        return (User) usr;
     }
 
     @Override

@@ -5,7 +5,7 @@
 
 
 import javax.ejb.EJB;
-import model.UserServiceBean;
+import model.UserService;
 
 /**
  *
@@ -14,7 +14,7 @@ import model.UserServiceBean;
 @javax.faces.bean.ManagedBean
 public class UserManager {
     @EJB
-    private UserServiceBean userServiceBean;
+    private UserService userServiceBean;
     private String username;
     private String password;
     public void setUsername(String username){

@@ -12,7 +12,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -20,9 +22,10 @@ import javax.persistence.Id;
  */
 @Entity
 @javax.persistence.Table(name = "USERS")
+@SequenceGenerator(name="USER_SEQUENCE_GENERATOR", sequenceName="USER_SEQUENCE", initialValue=1, allocationSize=1)
 public class User implements Serializable {
 
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQUENCE_GENERATOR")
     @Column(name = "ID")
     private Long id;
     @Id

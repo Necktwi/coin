@@ -13,11 +13,11 @@
         <h:body>
             <div id="authentication">
                 <h:form id="login">
-                    <h:message id="loginResult" for="login"></h:message>
+                    <h:outputText id="loginResult"></h:outputText>
                     <h:inputText id="username"/>
                     <h:inputSecret id="password"/>
                     <h:commandButton action="#{sessionManager.login()}" value="Login">
-                        <f:ajax render="loginResult"/>
+                        <f:ajax execute="@form" render="loginResult"/>
                     </h:commandButton>
                 </h:form>
                 <h:form id="register">
@@ -26,7 +26,7 @@
                     <h:inputSecret id="password" value="#{userManager.password}"/>
                     <h:inputSecret id="passcopy"/>
                     <h:commandButton action="#{userManager.registerUser()}" value="Register">
-                        <f:ajax render="registerationResult"/>
+                        <f:ajax execute="@form" render="registerationResult"/>
                     </h:commandButton>
                 </h:form>
             </div>
