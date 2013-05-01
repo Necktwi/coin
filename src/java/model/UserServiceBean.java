@@ -12,13 +12,15 @@ import javax.persistence.PersistenceContext;
  * @author newmek7
  */
 @javax.ejb.Stateless
+@javax.faces.bean.ApplicationScoped
 public class UserServiceBean implements UserService {
 
     @PersistenceContext(unitName = "coinPU")
     private EntityManager em;
 
     /**
-     *inserts user into database.
+     * inserts user into database.
+     *
      * @param user
      * @return
      */
@@ -26,7 +28,7 @@ public class UserServiceBean implements UserService {
     public String createOrUpdate(Users user) {
         try {
             em.persist(user);
-        } catch (javax.persistence.EntityExistsException e) {
+        } catch (Exception e) {
             return "exists";
         }
         return "success";
@@ -39,6 +41,6 @@ public class UserServiceBean implements UserService {
 
     @Override
     public Users find(Object id) {
-        return em.find(Users.class, id);
+        return em.getReference(Users.class, id);
     }
 }

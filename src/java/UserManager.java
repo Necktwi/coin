@@ -17,6 +17,7 @@ public class UserManager {
     private UserService userServiceBean;
     private String username;
     private String password;
+    private String result;
 
     public void setUsername(String username) {
         this.username = username;
@@ -34,9 +35,13 @@ public class UserManager {
         return this.password;
     }
 
+    public String getResult() {
+        return this.result;
+    }
+
     public String registerUser() {
         model.Users user = new model.Users(this.username, this.password);
-        userServiceBean.createOrUpdate(user);
-        return "success";
+        this.result = userServiceBean.createOrUpdate(user);
+        return null;
     }
 }

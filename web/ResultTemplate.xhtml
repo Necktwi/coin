@@ -13,15 +13,15 @@
         <h:body>
             <div id="authentication">
                 <h:form id="login">
-                    <h:outputText id="loginResult"></h:outputText>
-                    <h:inputText id="username"/>
-                    <h:inputSecret id="password"/>
+                    <h:outputText id="loginResult" value="#{sessionManager.result}"></h:outputText>
+                    <h:inputText id="username" value="#{sessionManager.username}"/>
+                    <h:inputSecret id="password" value="#{sessionManager.password}"/>
                     <h:commandButton action="#{sessionManager.login()}" value="Login">
                         <f:ajax execute="@form" render="loginResult"/>
                     </h:commandButton>
                 </h:form>
                 <h:form id="register">
-                    <h:outputText id="registerationResult"></h:outputText>
+                    <h:outputText id="registerationResult" value="#{userManager.result}"></h:outputText>
                     <h:inputText id="username" value="#{userManager.username}"/>
                     <h:inputSecret id="password" value="#{userManager.password}"/>
                     <h:inputSecret id="passcopy"/>

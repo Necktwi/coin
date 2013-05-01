@@ -12,10 +12,12 @@ import model.UserServiceBean;
  */
 @javax.faces.bean.ManagedBean
 public class SessionManager {
+
     @EJB
-    private UserServiceBean userServiceBean;
+    private model.UserService userServiceBean;
     private String username;
     private String password;
+    private String result;
 
     public void setUsername(String username) {
         this.username = username;
@@ -33,9 +35,17 @@ public class SessionManager {
         return this.password;
     }
 
+    public String getResult() {
+        return this.result;
+    }
+
     public String login() {
-        model.Users user = new model.Users(this.username, this.password);
-        this.userServiceBean.find(user);
-        return "success";
+        model.Users user = this.userServiceBean.find(this.username);
+        if (user != null && user.getPassword().compareTo(this.password) == 0) {
+            this.result = "success";
+        } else {
+            this.result = "failure";
+        }
+        return null;
     }
 }
