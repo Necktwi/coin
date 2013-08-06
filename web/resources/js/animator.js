@@ -27,54 +27,58 @@ animate = function() {
 };
 animate();
 
-mammal = {
-    name: 'mammal',
-    doLove: function(mate) {
-        if (mate && mate.__proto__ === this.__proto__ && mate.sex != this.sex) {
+mammal = function() {
+    this.doLove = function(mate) {
+        debugger;
+        if (mate && mate !== this && (mate.__proto__ instanceof mammal) && mate.sex !== this.sex) {
             var baby = {};
             for (var i in this) {
                 baby[i] = this[i];
             }
             baby.babies = [];
             this.babyCount++;
+            mate.babyCount++;
             baby.babyCount = 0;
-            this.babies.push(baby);
-            baby.name = "baby";
-            baby.parent = this;
-            baby.dob = time();
+            baby.name = "kitten";
+            baby.parents = [this, mate];
+            baby.dob = Date();
             baby.sex = parseInt(Math.random() * 10) >= 5 ? "male" : "female";
+            this.babies.push(baby);
+            mate.babies.push(baby);
             return baby;
         }
-    },
-    babyCount: 0,
-    babies: [],
-    sex: ""
-};
-mammal.__defineSetter__("sex", function() {
-    if (arguments.caller === this.doLove) {
-        if (argument[0] == "male") {
-            return "male";
-        } else if (argument[0] == "female") {
-            return "female";
+    };
+    this.babyCount = 0;
+    this.babies = [];
+    this.sex = "";
+    this.__defineSetter__("sex", function() {
+        if (arguments.caller === this.doLove) {
+            if (argument[0] === "male") {
+                return "male";
+            } else if (argument[0] === "female") {
+                return "female";
+            }
         }
-    }
-});
-shecat = {
-    __proto__: mammal,
+    });
+};
+
+kittyTheMotherOfAllCats = {
+    __proto__: new mammal(),
     shout: function() {
         return "meow";
     },
-    name: kitty,
+    name: "kittyTheMotherOfAllCats",
     sex: "female"
 };
-hecat = {
-    __proto__: mammal,
+kittuTheFatherOfAllCats = {
+    __proto__: new mammal(),
     shout: function() {
         return "meow";
     },
-    name: kittu,
+    name: "kittuTheFatherOfAllCats",
     sex: "male"
-}
+};
+
 dog = {
     __proto__: mammal,
     shout: function() {

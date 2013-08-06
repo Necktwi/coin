@@ -7,6 +7,7 @@
     <ui:composition>
         <h:head>
             <title>Head/Toss</title>
+            <f:view contentType="text/html;.m3u8 application/x-mpegURL;.ts video/MP2T" />
             <h:outputStylesheet library="css" name="main.css"/>
         </h:head>
 
@@ -41,6 +42,7 @@
                     </h:commandButton>
                 </h:form>
             </div>
+            <center><video width="150" height="150" src="stream-128k.m3u8"/></center>
         </h:body>
     </ui:composition>
 </html>
